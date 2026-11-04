@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>لوحة الإدارة — قفزة Qafza</title>
+<style>
+:root{--navy:#0b3470;--blue:#147ee5;--sky:#eaf4ff;--ink:#18263c;--muted:#66758b;--line:#e4eaf2;--bg:#f4f7fb;--green:#15805d;--red:#e05a77;--white:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Tahoma,Arial,sans-serif;line-height:1.7}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+.wrap{width:min(1100px,94%);margin:auto}
+.login-wrap{min-height:100vh;display:grid;place-items:center;padding:20px;background:radial-gradient(circle at 80% 10%,#d9ecff 0,transparent 40%),linear-gradient(135deg,#f7fbff,#edf5ff)}
+.login-card{background:#fff;padding:40px 30px;border-radius:20px;box-shadow:0 20px 60px rgba(11,52,112,.12);width:min(420px,100%);text-align:center;border:1px solid #e1eaf5}
+.login-card h1{color:var(--navy);margin:0 0 6px;font-size:26px}
+.login-card p{color:var(--muted);margin:0 0 22px;font-size:14px}
+.login-card input{width:100%;padding:14px 16px;border:1.5px solid #dce4ef;border-radius:12px;font-size:15px;outline:0;text-align:center;letter-spacing:2px;transition:.2s}
+.login-card input:focus{border-color:var(--blue);box-shadow:0 0 0 4px #147ee51c}
+.login-card button{width:100%;margin-top:12px;background:var(--blue);color:#fff;border:0;border-radius:12px;padding:13px;font-weight:bold;font-size:15px;transition:.2s}
+.login-card button:hover:not(:disabled){background:#0c6ac4;transform:translateY(-1px)}
+.login-card button:disabled{opacity:.6;cursor:wait}
+.login-error{color:var(--red);font-size:13px;margin-top:12px;min-height:20px}
+.login-hint{font-size:11px;color:#8fa0b5;margin-top:20px}
+.admin-header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10;box-shadow:0 2px 10px rgba(11,52,112,.04)}
+.admin-header .wrap{display:flex;align-items:center;justify-content:space-between;padding:16px 0;gap:16px;flex-wrap:wrap}
+.admin-brand{display:flex;align-items:center;gap:10px;font-weight:900;color:var(--navy);font-size:19px}
+.admin-brand small{display:block;font-size:10px;color:var(--muted);letter-spacing:2px;margin-top:-4px;font-weight:normal}
+.admin-actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn{border:0;border-radius:10px;padding:9px 15px;font-weight:bold;font-size:13px;display:inline-flex;align-items:center;gap:6px;transition:.2s}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-primary:hover:not(:disabled){background:#0c6ac4}
+.btn-ghost{background:#fff;border:1px solid var(--line);color:var(--navy)}
+.btn-ghost:hover{background:#f5f9ff;border-color:#c5d9f2}
+.btn-danger{background:#fef0f3;color:var(--red);border:1px solid #fad3dd}
+.btn-danger:hover{background:#fce0e7}
+.btn-success{background:var(--green);color:#fff}
+.btn-success:hover:not(:disabled){background:#0f6b4c}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.tabs{display:flex;gap:4px;margin:22px 0 20px;border-bottom:2px solid var(--line)}
+.tab{border:0;background:transparent;padding:12px 18px;color:var(--muted);font-weight:bold;font-size:14px;border-bottom:3px solid transparent;margin-bottom:-2px;transition:.2s}
+.tab.active{color:var(--blue);border-bottom-color:var(--blue)}
+.tab:hover:not(.active){color:var(--navy)}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+.dirty-badge{display:none;background:#fff8e8;border:1px solid #f2e1b7;color:#8b6a2a;padding:6px 12px;border-radius:99px;font-size:12px;font-weight:bold}
+.dirty-badge.show{display:inline-flex;align-items:center;gap:6px}
+.search-input{flex:1;min-width:180px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;font-size:14px;outline:0}
+.search-input:focus{border-color:var(--blue)}
+.jobs-table{background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 2px 12px rgba(11,52,112,.04)}
+table{width:100%;border-collapse:collapse}
+thead th{text-align:right;padding:12px 14px;font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;background:#fafcff;border-bottom:1px solid var(--line);font-weight:500}
+tbody td{padding:14px;border-bottom:1px solid var(--line);font-size:13px;vertical-align:middle}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:#fafcff}
+.job-title-cell{font-weight:bold;color:var(--navy);font-size:14px}
+.job-sub{color:var(--muted);font-size:11px;margin-top:2px}
+.action-btns{display:flex;gap:6px;justify-content:flex-end}
+.empty-state{text-align:center;padding:50px 20px;color:var(--muted);background:#fff;border-radius:14px;border:1px dashed #c9d8e8;font-size:14px}
+.modal{position:fixed;inset:0;background:rgba(7,27,54,.65);z-index:50;display:none;align-items:center;justify-content:center;padding:18px;backdrop-filter:blur(4px)}
+.modal.open{display:flex}
+.modal-panel{background:#fff;width:min(640px,100%);max-height:90vh;overflow:auto;border-radius:20px;padding:26px;box-shadow:0 20px 80px rgba(0,0,0,.25)}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.modal-head h2{color:var(--navy);margin:0;font-size:20px}
+.close-btn{border:0;background:#eef3f9;border-radius:9px;width:34px;height:34px;font-size:20px;color:var(--muted)}
+.close-btn:hover{background:#e2ecf7;color:var(--navy)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.form-group{display:grid;gap:6px}
+.form-group.full{grid-column:1/-1}
+.form-group label{font-size:12px;font-weight:bold;color:#53647a}
+.form-group input,.form-group select,.form-group textarea{border:1px solid #dce4ef;border-radius:9px;padding:10px 12px;outline:0;width:100%;font-size:14px;background:#fff;font-family:inherit;resize:vertical}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px #147ee51c}
+.form-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.settings-card{background:#fff;border-radius:14px;padding:24px;border:1px solid var(--line);margin-bottom:18px}
+.settings-card h3{margin:0 0 6px;color:var(--navy);font-size:17px}
+.settings-card .desc{color:var(--muted);font-size:13px;margin:0 0 18px}
+.settings-card .form-group{margin-bottom:14px}
+.settings-note{background:#f0f7ff;border:1px solid #cfe4ff;color:#0b4a8f;padding:12px 14px;border-radius:10px;font-size:12px;margin-top:14px;line-height:1.6}
+.settings-note.warn{background:#fff8e8;border-color:#f2e1b7;color:#8b6a2a}
+.toast{position:fixed;bottom:20px;left:20px;right:20px;margin:auto;max-width:520px;background:var(--navy);color:#fff;padding:14px 18px;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,.2);display:none;z-index:60;font-size:14px;text-align:center}
+.toast.show{display:block;animation:slideUp .3s ease}
+.toast.error{background:#a0263a}
+.toast.success{background:var(--green)}
+@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+@media(max-width:700px){
+  .form-grid{grid-template-columns:1fr}
+  .form-group.full{grid-column:auto}
+  thead th:nth-child(3),tbody td:nth-child(3),
+  thead th:nth-child(4),tbody td:nth-child(4){display:none}
+  .admin-header .wrap{padding:12px 0}
+  .admin-actions .btn{padding:8px 12px;font-size:12px}
+}
+</style>
+</head>
+<body>
+
+<div id="loginScreen" class="login-wrap">
+  <div class="login-card">
+    <h1>🔐 لوحة الإدارة</h1>
+    <p>الدخول مخصص للمسؤول فقط</p>
+    <input type="password" id="pwInput" placeholder="كلمة المرور" autocomplete="current-password" autofocus>
+    <button id="loginBtn" onclick="doLogin()">دخول</button>
+    <div class="login-error" id="loginError"></div>
+    <div class="login-hint">كلمة المرور الافتراضية: admin123 — غيّرها بعد الدخول من الإعدادات</div>
+  </div>
+</div>
+
+<div id="adminPanel" style="display:none">
+  <header class="admin-header">
+    <div class="wrap">
+      <div class="admin-brand">
+        <span>⚙️ قفزة<span style="color:var(--blue)"> Qafza</span><small>لوحة الإدارة</small></span>
+      </div>
+      <div class="admin-actions">
+        <a class="btn btn-ghost" href="index.html" target="_blank">↗ عرض الموقع</a>
+        <button class="btn btn-ghost" onclick="logout()">🚪 خروج</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-tab="jobs" role="tab">📋 الوظائف</button>
+      <button class="tab" data-tab="settings" role="tab">⚙️ الإعدادات</button>
+    </div>
+
+    <section id="jobsTab">
+      <div class="toolbar">
+        <button class="btn btn-primary" onclick="openJobModal()">➕ إضافة وظيفة</button>
+        <button class="btn btn-ghost" onclick="importJSON()">📥 استيراد JSON</button>
+        <button class="btn btn-ghost" onclick="exportJSON()">📤 تصدير JSON</button>
+        <button class="btn btn-success" id="publishBtn" onclick="publishToGitHub()">🚀 نشر على GitHub</button>
+        <span class="dirty-badge" id="dirtyBadge">⚠️ تغييرات غير منشورة</span>
+        <input class="search-input" id="searchJobs" placeholder="🔍 ابحث في الوظائف..." oninput="renderJobsTable()">
+      </div>
+      <div class="jobs-table">
+        <table>
+          <thead><tr>
+            <th style="width:45px">#</th>
+            <th>الوظيفة</th>
+            <th>الدولة</th>
+            <th>النوع</th>
+            <th style="text-align:left">إجراءات</th>
+          </tr></thead>
+          <tbody id="jobsTableBody"></tbody>
+        </table>
+      </div>
+      <div id="emptyState" class="empty-state" style="display:none">لا توجد وظائف. اضغط "إضافة وظيفة" للبدء.</div>
+    </section>
+
+    <section id="settingsTab" style="display:none">
+      <div class="settings-card">
+        <h3>🔑 تغيير كلمة المرور</h3>
+        <p class="desc">ستُستخدم في الدخول إلى لوحة الإدارة من هذا المتصفح.</p>
+        <div class="form-group"><label for="oldPw">كلمة المرور الحالية</label><input type="password" id="oldPw" autocomplete="current-password"></div>
+        <div class="form-group"><label for="newPw">كلمة المرور الجديدة (6 أحرف على الأقل)</label><input type="password" id="newPw" autocomplete="new-password"></div>
+        <div class="form-group"><label for="newPw2">تأكيد كلمة المرور</label><input type="password" id="newPw2" autocomplete="new-password"></div>
+        <button class="btn btn-primary" onclick="changePassword()">حفظ كلمة المرور</button>
+      </div>
+
+      <div class="settings-card">
+        <h3>🚀 النشر على GitHub (اختياري)</h3>
+        <p class="desc">لتمكين النشر التلقائي من لوحة الإدارة إلى المستودع، أدخل Personal Access Token مع صلاحية "Contents: Read and write" على مستودع qafzza.</p>
+        <div class="form-group"><label for="ghPat">Personal Access Token (يُخزّن محليًا فقط)</label><input type="password" id="ghPat" placeholder="ghp_..."></div>
+        <div class="form-grid">
+          <div class="form-group"><label for="ghOwner">المستخدم</label><input id="ghOwner" placeholder="ezzosd"></div>
+          <div class="form-group"><label for="ghRepo">المستودع</label><input id="ghRepo" placeholder="qafzza"></div>
+          <div class="form-group"><label for="ghBranch">الفرع</label><input id="ghBranch" placeholder="main"></div>
+          <div class="form-group"><label for="ghPath">مسار الملف</label><input id="ghPath" placeholder="jobs.json"></div>
+        </div>
+        <button class="btn btn-primary" onclick="saveGitHubSettings()">حفظ الإعدادات</button>
+        <div class="settings-note">🔒 الـ Token يُخزّن في localStorage على هذا المتصفح فقط. لا تشارك جهازك مع أحد. يمكنك إلغاؤه من GitHub في أي وقت.</div>
+      </div>
+
+      <div class="settings-card">
+        <h3>🗑️ إعادة تعيين</h3>
+        <p class="desc">حذف كل التعديلات المحلية والعودة إلى البيانات المدمجة.</p>
+        <button class="btn btn-danger" onclick="resetLocal()">حذف التعديلات المحلية</button>
+        <div class="settings-note warn">سيؤدي هذا إلى مسح الوظائف المخزّنة محليًا (لن يؤثر على jobs.json المنشور).</div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="modal" id="jobModal">
+  <div class="modal-panel">
+    <div class="modal-head">
+      <h2 id="jobModalTitle">إضافة وظيفة</h2>
+      <button class="close-btn" onclick="closeJobModal()" aria-label="إغلاق">×</button>
+    </div>
+    <form id="jobForm" onsubmit="saveJob(event)">
+      <input type="hidden" id="jobId">
+      <div class="form-grid">
+        <div class="form-group full"><label for="jTitle">المسمى الوظيفي *</label><input id="jTitle" required></div>
+        <div class="form-group"><label for="jCompany">الشركة *</label><input id="jCompany" required></div>
+        <div class="form-group"><label for="jIcon">الحرف/الرمز (أيقونة)</label><input id="jIcon" maxlength="2" placeholder="ح"></div>
+        <div class="form-group"><label for="jCountry">الدولة *</label>
+          <select id="jCountry" required>
+            <option value="">اختر...</option>
+            <option>السعودية</option><option>الإمارات</option><option>قطر</option>
+            <option>الكويت</option><option>البحرين</option><option>عُمان</option>
+          </select>
+        </div>
+        <div class="form-group"><label for="jCity">المدينة *</label><input id="jCity" required></div>
+        <div class="form-group"><label for="jType">نوع الدوام *</label>
+          <select id="jType" required>
+            <option value="دوام كامل">دوام كامل</option>
+            <option value="عن بُعد">عن بُعد</option>
+            <option value="دوام جزئي">دوام جزئي</option>
+          </select>
+        </div>
+        <div class="form-group"><label for="jLevel">المستوى *</label>
+          <select id="jLevel" required>
+            <option value="حديثو التخرج">حديثو التخرج</option>
+            <option value="خبرة 1–3 سنوات">خبرة 1–3 سنوات</option>
+            <option value="خبرة 2–4 سنوات">خبرة 2–4 سنوات</option>
+            <option value="خبرة 2+ سنوات">خبرة 2+ سنوات</option>
+            <option value="مبتدئ أو متوسط">مبتدئ أو متوسط</option>
+            <option value="خبرة 5+ سنوات">خبرة 5+ سنوات</option>
+          </select>
+        </div>
+        <div class="form-group full"><label for="jSalary">الراتب (نص حر)</label><input id="jSalary" placeholder="يُحدد حسب الخبرة"></div>
+        <div class="form-group full"><label for="jDesc">الوصف</label><textarea id="jDesc" rows="3"></textarea></div>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn btn-ghost" onclick="closeJobModal()">إلغاء</button>
+        <button type="submit" class="btn btn-primary">💾 حفظ</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const DEFAULT_PASSWORD_B64 = 'YWRtaW4xMjM=';
+const LS_HASH = 'qafza_admin_hash';
+const LS_JOBS = 'qafza_jobs';
+const LS_DIRTY = 'qafza_dirty';
+const LS_GH = 'qafza_gh_settings';
+const SESSION_KEY = 'qafza_admin_session';
+
+async function sha256(str) {
+  if (!window.crypto?.subtle) throw new Error('تتطلب لوحة الإدارة اتصال HTTPS');
+  const buf = new TextEncoder().encode(str);
+  const h = await crypto.subtle.digest('SHA-256', buf);
+  return Array.from(new Uint8Array(h)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+async function checkPassword(input) {
+  const customHash = localStorage.getItem(LS_HASH);
+  if (customHash) return (await sha256(input)) === customHash;
+  return input === atob(DEFAULT_PASSWORD_B64);
+}
+async function doLogin() {
+  const pw = document.getElementById('pwInput').value;
+  const err = document.getElementById('loginError');
+  const btn = document.getElementById('loginBtn');
+  if (!pw) { err.textContent = 'أدخل كلمة المرور'; return; }
+  btn.disabled = true; btn.textContent = 'جارٍ التحقق...'; err.textContent = '';
+  try {
+    if (await checkPassword(pw)) {
+      sessionStorage.setItem(SESSION_KEY, '1');
+      showAdmin();
+    } else {
+      err.textContent = 'كلمة المرور غير صحيحة';
+      document.getElementById('pwInput').value = '';
+    }
+  } catch (e) { err.textContent = e.message; }
+  finally { btn.disabled = false; btn.textContent = 'دخول'; }
+}
+document.getElementById('pwInput').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+function logout() { sessionStorage.removeItem(SESSION_KEY); location.reload(); }
+async function changePassword() {
+  const oldPw = document.getElementById('oldPw').value;
+  const n1 = document.getElementById('newPw').value;
+  const n2 = document.getElementById('newPw2').value;
+  if (!(await checkPassword(oldPw))) { showToast('كلمة المرور الحالية خاطئة', 'error'); return; }
+  if (n1.length < 6) { showToast('كلمة المرور الجديدة قصيرة جدًا', 'error'); return; }
+  if (n1 !== n2) { showToast('كلمتا المرور غير متطابقتين', 'error'); return; }
+  localStorage.setItem(LS_HASH, await sha256(n1));
+  document.getElementById('oldPw').value = '';
+  document.getElementById('newPw').value = '';
+  document.getElementById('newPw2').value = '';
+  showToast('تم تغيير كلمة المرور بنجاح', 'success');
+}
+
+const EMBEDDED_JOBS = [
+  {id:1,title:"محاسب عام",company:"شركة أعمال الخليج",country:"السعودية",city:"الرياض",type:"دوام كامل",level:"خبرة 2–4 سنوات",salary:"يُحدد حسب الخبرة",icon:"ح",description:"مثال تجريبي لوظيفة محاسب عام."},
+  {id:2,title:"منسق خدمة عملاء",company:"مجموعة المدار",country:"الإمارات",city:"دبي",type:"دوام كامل",level:"خبرة 1–3 سنوات",salary:"يُحدد حسب الخبرة",icon:"م",description:"مثال تجريبي لوظيفة خدمة عملاء."},
+  {id:3,title:"مصمم جرافيك",company:"استوديو نقطة",country:"قطر",city:"الدوحة",type:"عن بُعد",level:"مبتدئ أو متوسط",salary:"يُحدد حسب الخبرة",icon:"ن",description:"مثال تجريبي لوظيفة تصميم."},
+  {id:4,title:"مساعد إداري",company:"شركة روافد",country:"الكويت",city:"مدينة الكويت",type:"دوام كامل",level:"حديثو التخرج",salary:"يُحدد حسب الخبرة",icon:"ر",description:"مثال تجريبي لوظيفة مساعد إداري."},
+  {id:5,title:"مطور واجهات ويب",company:"حلول رقمية",country:"البحرين",city:"المنامة",type:"عن بُعد",level:"خبرة 2+ سنوات",salary:"يُحدد حسب الخبرة",icon:"د",description:"مثال تجريبي لوظيفة تطوير ويب."},
+  {id:6,title:"مندوب مبيعات",company:"شركة الريادة",country:"عُمان",city:"مسقط",type:"دوام كامل",level:"حديثو التخرج",salary:"يُحدد حسب الخبرة",icon:"ر",description:"مثال تجريبي لوظيفة مبيعات."}
+];
+
+let jobs = [];
+let publishedSnapshot = null;
+
+function loadLocalJobs() {
+  const stored = localStorage.getItem(LS_JOBS);
+  if (stored) {
+    try {
+      const parsed = JSON.parse(stored);
+      if (Array.isArray(parsed)) return parsed;
+    } catch(e) {}
+  }
+  return null;
+}
+function saveLocalJobs(silent) {
+  localStorage.setItem(LS_JOBS, JSON.stringify(jobs));
+  if (!silent) markDirty();
+}
+async function fetchPublishedJobs() {
+  try {
+    const res = await fetch('jobs.json?t=' + Date.now(), { cache: 'no-store' });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return Array.isArray(data) ? data : null;
+  } catch(e) { return null; }
+}
+function markDirty() { localStorage.setItem(LS_DIRTY, '1'); updateDirtyBadge(); }
+function clearDirty() { localStorage.removeItem(LS_DIRTY); updateDirtyBadge(); }
+function updateDirtyBadge() {
+  const badge = document.getElementById('dirtyBadge');
+  if (!badge) return;
+  badge.classList.toggle('show', localStorage.getItem(LS_DIRTY) === '1');
+}
+function renderJobsTable() {
+  const q = (document.getElementById('searchJobs').value || '').toLowerCase().trim();
+  const filtered = q
+    ? jobs.filter(j => [j.title, j.company, j.country, j.city, j.level].join(' ').toLowerCase().includes(q))
+    : jobs;
+  const tbody = document.getElementById('jobsTableBody');
+  const empty = document.getElementById('emptyState');
+  if (!filtered.length) {
+    tbody.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+  tbody.innerHTML = filtered.map(j => `
+    <tr>
+      <td>${j.id}</td>
+      <td>
+        <div class="job-title-cell">${escape(j.title)}</div>
+        <div class="job-sub">${escape(j.company)}</div>
+      </td>
+      <td>${escape(j.country)}<div class="job-sub">${escape(j.city)}</div></td>
+      <td>${escape(j.type)}</td>
+      <td>
+        <div class="action-btns">
+          <button class="btn btn-ghost" onclick="openJobModal(${j.id})">✏️</button>
+          <button class="btn btn-danger" onclick="deleteJob(${j.id})">🗑️</button>
+        </div>
+      </td>
+    </tr>`).join('');
+}
+function escape(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+function openJobModal(id) {
+  const modal = document.getElementById('jobModal');
+  const title = document.getElementById('jobModalTitle');
+  if (id) {
+    const j = jobs.find(x => x.id === id);
+    if (!j) return;
+    title.textContent = 'تعديل الوظيفة';
+    document.getElementById('jobId').value = j.id;
+    document.getElementById('jTitle').value = j.title || '';
+    document.getElementById('jCompany').value = j.company || '';
+    document.getElementById('jIcon').value = j.icon || '';
+    document.getElementById('jCountry').value = j.country || '';
+    document.getElementById('jCity').value = j.city || '';
+    document.getElementById('jType').value = j.type || 'دوام كامل';
+    document.getElementById('jLevel').value = j.level || 'حديثو التخرج';
+    document.getElementById('jSalary').value = j.salary || '';
+    document.getElementById('jDesc').value = j.description || '';
+  } else {
+    title.textContent = 'إضافة وظيفة';
+    document.getElementById('jobForm').reset();
+    document.getElementById('jobId').value = '';
+  }
+  modal.classList.add('open');
+}
+function closeJobModal() { document.getElementById('jobModal').classList.remove('open'); }
+function saveJob(e) {
+  e.preventDefault();
+  const id = document.getElementById('jobId').value;
+  const job = {
+    title: document.getElementById('jTitle').value.trim(),
+    company: document.getElementById('jCompany').value.trim(),
+    icon: document.getElementById('jIcon').value.trim() || document.getElementById('jTitle').value.trim().charAt(0),
+    country: document.getElementById('jCountry').value,
+    city: document.getElementById('jCity').value.trim(),
+    type: document.getElementById('jType').value,
+    level: document.getElementById('jLevel').value,
+    salary: document.getElementById('jSalary').value.trim() || 'يُحدد حسب الخبرة',
+    description: document.getElementById('jDesc').value.trim()
+  };
+  if (id) {
+    const idx = jobs.findIndex(x => x.id === Number(id));
+    if (idx >= 0) jobs[idx] = { ...jobs[idx], ...job };
+  } else {
+    const maxId = jobs.reduce((m, x) => Math.max(m, x.id || 0), 0);
+    jobs.push({ id: maxId + 1, ...job });
+  }
+  saveLocalJobs();
+  renderJobsTable();
+  closeJobModal();
+  showToast('تم الحفظ محليًا — لا تنسَ النشر على GitHub', 'success');
+}
+function deleteJob(id) {
+  if (!confirm('هل أنت متأكد من حذف هذه الوظيفة؟')) return;
+  jobs = jobs.filter(j => j.id !== id);
+  saveLocalJobs();
+  renderJobsTable();
+  showToast('تم الحذف محليًا', 'success');
+}
+
+function exportJSON() {
+  const blob = new Blob([JSON.stringify(jobs, null, 2)], { type: 'application/json;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'jobs.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  showToast('تم تنزيل jobs.json', 'success');
+}
+function importJSON() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.json,application/json';
+  input.onchange = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    try {
+      const text = await file.text();
+      const data = JSON.parse(text);
+      if (!Array.isArray(data)) throw new Error('الملف يجب أن يحتوي على مصفوفة');
+      if (!confirm(`استيراد ${data.length} وظيفة؟ سيستبدل القائمة الحالية.`)) return;
+      jobs = data.map((j, i) => ({ id: j.id || i + 1, ...j }));
+      saveLocalJobs();
+      renderJobsTable();
+      showToast(`تم استيراد ${data.length} وظيفة`, 'success');
+    } catch (err) {
+      showToast('فشل الاستيراد: ' + err.message, 'error');
+    }
+  };
+  input.click();
+}
+
+function loadGitHubSettings() {
+  const s = JSON.parse(localStorage.getItem(LS_GH) || 'null') || {};
+  document.getElementById('ghPat').value = s.pat || '';
+  document.getElementById('ghOwner').value = s.owner || 'ezzosd';
+  document.getElementById('ghRepo').value = s.repo || 'qafzza';
+  document.getElementById('ghBranch').value = s.branch || 'main';
+  document.getElementById('ghPath').value = s.path || 'jobs.json';
+}
+function saveGitHubSettings() {
+  const s = {
+    pat: document.getElementById('ghPat').value.trim(),
+    owner: document.getElementById('ghOwner').value.trim(),
+    repo: document.getElementById('ghRepo').value.trim(),
+    branch: document.getElementById('ghBranch').value.trim() || 'main',
+    path: document.getElementById('ghPath').value.trim() || 'jobs.json'
+  };
+  localStorage.setItem(LS_GH, JSON.stringify(s));
+  showToast('تم حفظ إعدادات GitHub', 'success');
+}
+async function publishToGitHub() {
+  const s = JSON.parse(localStorage.getItem(LS_GH) || 'null');
+  if (!s || !s.pat) {
+    showToast('لم يتم إعداد GitHub Token. انتقل إلى الإعدادات أولاً.', 'error');
+    return;
+  }
+  const btn = document.getElementById('publishBtn');
+  const original = btn.textContent;
+  btn.disabled = true; btn.textContent = '⏳ جارٍ النشر...';
+  try {
+    const api = `https://api.github.com/repos/${s.owner}/${s.repo}/contents/${encodeURIComponent(s.path)}`;
+    const getRes = await fetch(`${api}?ref=${encodeURIComponent(s.branch)}`, {
+      headers: { 'Authorization': `Bearer ${s.pat}`, 'Accept': 'application/vnd.github+json' }
+    });
+    let sha = null;
+    if (getRes.ok) { const d = await getRes.json(); sha = d.sha; }
+    else if (getRes.status !== 404) throw new Error('فشل قراءة الملف: ' + getRes.status);
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(jobs, null, 2))));
+    const body = { message: 'تحديث الوظائف من لوحة الإدارة', content, branch: s.branch };
+    if (sha) body.sha = sha;
+    const putRes = await fetch(api, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${s.pat}`,
+        'Accept': 'application/vnd.github+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    });
+    if (!putRes.ok) {
+      const err = await putRes.json().catch(() => ({}));
+      throw new Error(err.message || 'فشل النشر: ' + putRes.status);
+    }
+    clearDirty();
+    showToast('✅ تم النشر — سيظهر للزوار خلال ~30 ثانية', 'success');
+  } catch (err) {
+    showToast('فشل النشر: ' + err.message, 'error');
+  } finally {
+    btn.disabled = false; btn.textContent = original;
+  }
+}
+function resetLocal() {
+  if (!confirm('سيتم حذف كل التعديلات المحلية. متابعة؟')) return;
+  localStorage.removeItem(LS_JOBS);
+  localStorage.removeItem(LS_DIRTY);
+  showToast('تم الحذف — سيُعاد التحميل من jobs.json', 'success');
+  setTimeout(() => location.reload(), 800);
+}
+
+let toastTimer;
+function showToast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (type ? ' ' + type : '');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.className = 'toast', 4000);
+}
+
+function showAdmin() {
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('adminPanel').style.display = 'block';
+  loadGitHubSettings();
+  updateDirtyBadge();
+}
+async function boot() {
+  if (sessionStorage.getItem(SESSION_KEY) === '1') showAdmin();
+  const published = await fetchPublishedJobs();
+  publishedSnapshot = published;
+  const local = loadLocalJobs();
+  jobs = local || published || [...EMBEDDED_JOBS];
+  renderJobsTable();
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelectorAll('#jobsTab, #settingsTab').forEach(s => s.style.display = 'none');
+      document.getElementById(tab.dataset.tab + 'Tab').style.display = 'block';
+    });
+  });
+}
+boot();
+</script>
+</body>
+</html>
