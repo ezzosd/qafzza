@@ -3,96 +3,153 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="index, follow">
-<meta name="description" content="تواصل مع فريق قفزة Qafza — للاستفسارات أو نشر فرص عمل.">
+<meta name="description" content="تواصل مع فريق قفزة Qafza — أسئلة، اقتراحات، أو استفسارات عن فرص العمل.">
+<meta name="theme-color" content="#0b3470">
 <title>اتصل بنا | قفزة Qafza</title>
 <link rel="canonical" href="https://ezzosd.github.io/qafzza/contact.html">
 <link rel="icon" href="logo.png" type="image/png">
 <style>
-body{margin:0;background:#f7f9fc;color:#18263c;font-family:Tahoma,Arial,sans-serif;line-height:1.9}
-.wrap{width:min(680px,92%);margin:auto;padding:40px 0 60px}
-header{background:#fff;border-bottom:1px solid #e4eaf2;padding:15px 0;margin-bottom:30px}
-header .wrap{padding:0;display:flex;justify-content:space-between;align-items:center;gap:15px}
-.brand{display:flex;align-items:center;gap:10px;color:#0b3470;font-weight:900;font-size:22px;text-decoration:none}
-.brand img{width:38px;height:38px;border-radius:10px;background:#fff;padding:3px;box-shadow:0 4px 12px #0b34702b}
-.back{color:#147ee5;font-size:14px;text-decoration:none;font-weight:700}
-h1{color:#0b3470;font-size:30px;margin:0 0 10px}
-p{color:#3b4b61;font-size:15px}
-a{color:#147ee5}
-form{margin-top:25px;background:#fff;border:1px solid #e4eaf2;border-radius:16px;padding:22px}
-.fg{display:grid;gap:6px;margin-bottom:14px}
-label{font-size:12px;font-weight:bold;color:#53647a}
-input,textarea{width:100%;border:1px solid #dce4ef;border-radius:10px;padding:11px;outline:0;background:#fff;font-family:inherit;resize:vertical;box-sizing:border-box}
-input:focus,textarea:focus{border-color:#147ee5;box-shadow:0 0 0 3px #147ee51c}
-button{width:100%;border:0;border-radius:11px;padding:13px;font-weight:700;background:#147ee5;color:#fff;cursor:pointer;font-family:inherit;font-size:15px}
-button:disabled{opacity:.6;cursor:not-allowed}
-button:hover:not(:disabled){background:#096bd0}
-.info{margin-top:20px;padding:16px;background:#eaf4ff;border-radius:12px;font-size:14px;color:#3b4b61}
-footer{text-align:center;color:#8896a8;font-size:12px;margin-top:40px;padding-top:20px;border-top:1px solid #e4eaf2}
-footer a{color:#147ee5;margin:0 6px}
-#status{margin-top:12px;font-size:14px;text-align:center}
+:root{--navy:#0b3470;--blue:#147ee5;--sky:#eaf4ff;--ink:#18263c;--muted:#66758b;--line:#e4eaf2;--bg:#f7f9fc;--green:#15805d;--red:#e05a77;--shadow:0 14px 40px rgba(15,45,90,.09)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Tahoma,Arial,sans-serif;line-height:1.8}a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}button{cursor:pointer}.wrap{width:min(900px,92%);margin:auto}
+header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}.nav{height:78px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:10px;font-weight:900;color:var(--navy);font-size:26px}.brand-logo{width:42px;height:42px;object-fit:contain;border-radius:13px;background:#fff;padding:3px;box-shadow:0 6px 15px #0b34702b;flex-shrink:0}.brand small{display:block;font-size:11px;letter-spacing:2px;color:var(--muted);margin-top:-7px}.btn{display:inline-flex;align-items:center;gap:6px;border-radius:11px;padding:11px 17px;font-weight:700;border:0;transition:.2s}.btn-primary{background:var(--blue);color:#fff;width:100%;justify-content:center;padding:13px}.btn-primary:hover:not(:disabled){background:#096bd0}.btn-outline{background:#fff;border:1px solid var(--line);color:var(--navy)}
+.page-hero{padding:60px 0 40px;background:radial-gradient(circle at 85% 10%,#d9ecff 0,transparent 30%),linear-gradient(135deg,#f7fbff,#edf5ff);text-align:center}.page-hero .eyebrow{display:inline-flex;align-items:center;gap:7px;color:var(--blue);font-weight:800;font-size:13px;background:#fff;padding:7px 12px;border:1px solid #dcecff;border-radius:99px;margin-bottom:15px}.page-hero h1{font-size:clamp(28px,4.5vw,44px);color:var(--navy);margin:0 0 12px;letter-spacing:-.5px}.page-hero p{color:#5c6d83;font-size:16px;max-width:640px;margin:0 auto}
+section{padding:50px 0}
+.contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:24px}
+.info-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px;box-shadow:0 2px 12px rgba(11,52,112,.04)}
+.info-card h3{margin:0 0 16px;color:var(--navy);font-size:18px}
+.info-item{display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--line)}
+.info-item:last-child{border-bottom:0}
+.info-item .icon{font-size:22px;flex-shrink:0;width:40px;height:40px;background:var(--sky);color:var(--blue);border-radius:10px;display:grid;place-items:center}
+.info-item .label{font-size:12px;color:var(--muted);margin-bottom:3px}
+.info-item .value{font-weight:bold;color:var(--navy);font-size:14px;word-break:break-word}
+.form-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px;box-shadow:0 2px 12px rgba(11,52,112,.04)}
+.form-card h2{margin:0 0 6px;color:var(--navy);font-size:20px}
+.form-card .sub{color:var(--muted);font-size:13px;margin-bottom:20px}
+.form-group{display:grid;gap:6px;margin-bottom:14px}
+.form-group label{font-size:13px;font-weight:bold;color:#53647a}
+.form-group input,.form-group select,.form-group textarea{border:1px solid #dce4ef;border-radius:10px;padding:11px 13px;outline:0;width:100%;font-size:14px;background:#fff;font-family:inherit;resize:vertical;transition:.2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px #147ee51c}
+.form-note{font-size:12px;color:var(--muted);margin:10px 0 14px}
+.toast{position:fixed;bottom:20px;left:20px;right:20px;margin:auto;max-width:480px;background:var(--navy);color:#fff;padding:14px 18px;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,.2);display:none;z-index:60;font-size:14px;text-align:center}
+.toast.show{display:block}
+.toast.success{background:var(--green)}
+.toast.error{background:var(--red)}
+footer{background:#081f43;color:#aebed4;padding:26px 0;text-align:center;font-size:13px;margin-top:40px}footer a{color:#dbe7f6}
+@media(max-width:800px){.contact-grid{grid-template-columns:1fr}.nav{height:68px}.brand{font-size:22px}.brand-logo{width:38px;height:38px}}
 </style>
 </head>
 <body>
-<header><div class="wrap">
-  <a class="brand" href="index.html"><img src="logo.png" alt="قفزة"> قفزة Qafza</a>
-  <a class="back" href="index.html">← العودة للرئيسية</a>
-</div></header>
-<div class="wrap">
-  <h1>اتصل بنا</h1>
-  <p>هل لديك استفسار، اقتراح، أو ترغب في نشر فرصة عمل على «قفزة»؟ أرسل لنا رسالة وسنرد في أقرب وقت.</p>
 
-  <form id="contactForm">
-    <input type="hidden" name="access_key" value="ضع_مفتاح_Web3Forms_هنا">
-    <input type="hidden" name="subject" value="رسالة جديدة من صفحة الاتصال — قفزة Qafza">
-    <input type="hidden" name="from_name" value="قفزة Qafza — اتصل بنا">
-    <div class="fg"><label for="cname">الاسم *</label><input id="cname" name="name" required autocomplete="name" placeholder="اسمك"></div>
-    <div class="fg"><label for="cemail">البريد الإلكتروني *</label><input id="cemail" name="email" type="email" required autocomplete="email" placeholder="name@example.com"></div>
-    <div class="fg"><label for="csubject">الموضوع</label><input id="csubject" name="topic" placeholder="مثال: نشر وظيفة، استفسار"></div>
-    <div class="fg"><label for="cmsg">رسالتك *</label><textarea id="cmsg" name="message" rows="5" required placeholder="اكتب رسالتك هنا..."></textarea></div>
-    <button type="submit" id="submitBtn">إرسال الرسالة</button>
-    <div id="status" role="status" aria-live="polite"></div>
-  </form>
-
-  <div class="info">
-    <strong>البريد المباشر:</strong> <a href="mailto:contact@example.com">contact@example.com</a><br>
-    <strong>وقت الرد المتوقع:</strong> خلال 2–3 أيام عمل.
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html">
+      <img class="brand-logo" src="logo.png" alt="شعار قفزة" width="42" height="42">
+      <span>قفزة<small>QAFZA</small></span>
+    </a>
+    <a class="btn btn-outline" href="index.html">← الرئيسية</a>
   </div>
+</header>
 
-  <footer>© <span id="year"></span> قفزة Qafza — <a href="index.html">الرئيسية</a> <a href="privacy.html">الخصوصية</a> <a href="terms.html">الشروط</a> <a href="about.html">من نحن</a></footer>
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">✦ نحن هنا لمساعدتك</span>
+    <h1>اتصل بنا</h1>
+    <p>هل لديك سؤال أو اقتراح؟ فريق قفزة يسعده مساعدتك.</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <section>
+    <div class="contact-grid">
+      <div class="info-card">
+        <h3>معلومات التواصل</h3>
+        <div class="info-item">
+          <div class="icon">📧</div>
+          <div><div class="label">البريد الإلكتروني</div><div class="value">contact@qafza.example</div></div>
+        </div>
+        <div class="info-item">
+          <div class="icon">💬</div>
+          <div><div class="label">الاستفسارات</div><div class="value">نرد خلال 24-48 ساعة</div></div>
+        </div>
+        <div class="info-item">
+          <div class="icon">🌍</div>
+          <div><div class="label">نطاق الخدمة</div><div class="value">السعودية · الإمارات · قطر · الكويت · البحرين · عُمان</div></div>
+        </div>
+        <div class="info-item">
+          <div class="icon">⏰</div>
+          <div><div class="label">ساعات العمل</div><div class="value">الأحد - الخميس<br>9:00 ص - 6:00 م</div></div>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <h2>أرسل رسالتك</h2>
+        <p class="sub">املأ النموذج وسنعاود التواصل معك في أقرب وقت.</p>
+        <form id="contactForm">
+          <input type="hidden" name="access_key" value="ضع_مفتاح_Web3Forms_هنا">
+          <input type="hidden" name="subject" value="رسالة جديدة من صفحة اتصل بنا — قفزة">
+          <input type="hidden" name="from_name" value="قفزة Qafza">
+          <div class="form-group"><label for="name">الاسم *</label><input id="name" name="name" required placeholder="اسمك الكامل"></div>
+          <div class="form-group"><label for="email">البريد الإلكتروني *</label><input id="email" name="email" type="email" required placeholder="name@example.com"></div>
+          <div class="form-group"><label for="topic">الموضوع</label>
+            <select id="topic" name="topic">
+              <option>استفسار عام</option>
+              <option>سؤال عن وظيفة</option>
+              <option>اقتراح أو ملاحظة</option>
+              <option>الإبلاغ عن مشكلة</option>
+              <option>شراكة أو تعاون</option>
+            </select>
+          </div>
+          <div class="form-group"><label for="message">الرسالة *</label><textarea id="message" name="message" rows="5" required placeholder="اكتب رسالتك هنا..."></textarea></div>
+          <p class="form-note">بإرسالك الرسالة توافق على <a href="privacy.html" style="color:var(--blue)">سياسة الخصوصية</a>.</p>
+          <button class="btn btn-primary" type="submit">إرسال الرسالة</button>
+        </form>
+      </div>
+    </div>
+  </section>
 </div>
+
+<div class="toast" id="toast"></div>
+
+<footer>
+  <div class="wrap">© <span id="year"></span> قفزة Qafza — <a href="index.html">الرئيسية</a> · <a href="about.html">من نحن</a> · <a href="privacy.html">الخصوصية</a> · <a href="terms.html">الشروط</a></div>
+</footer>
+
 <script>
-document.getElementById("year").textContent = new Date().getFullYear();
-document.getElementById("contactForm").addEventListener("submit", async e => {
+document.getElementById('year').textContent = new Date().getFullYear();
+
+document.getElementById('contactForm').addEventListener('submit', async (e) => {
   e.preventDefault();
   const form = e.target;
-  const btn = document.getElementById("submitBtn");
-  const status = document.getElementById("status");
+  const btn = form.querySelector('button[type="submit"]');
   const original = btn.textContent;
   btn.disabled = true;
-  btn.textContent = "جارٍ الإرسال...";
-  status.textContent = "";
-
-  const payload = Object.fromEntries(new FormData(form).entries());
+  btn.textContent = 'جارٍ الإرسال...';
   try {
-    const res = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify(payload)
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(Object.fromEntries(new FormData(form).entries()))
     });
     const data = await res.json();
-    if (!data.success) throw new Error(data.message || "فشل الإرسال");
-    status.style.color = "#15805d";
-    status.textContent = "✓ تم إرسال رسالتك. شكرًا لتواصلك!";
+    if (!data.success) throw new Error(data.message || 'فشل الإرسال');
     form.reset();
+    toast('✅ تم إرسال رسالتك — سنتواصل معك قريبًا', 'success');
   } catch (err) {
-    status.style.color = "#b02a37";
-    status.textContent = "تعذّر الإرسال: " + err.message;
+    toast('تعذّر الإرسال: ' + err.message, 'error');
   } finally {
     btn.disabled = false;
     btn.textContent = original;
   }
 });
+
+let t;
+function toast(msg, type) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = 'toast show' + (type ? ' ' + type : '');
+  clearTimeout(t);
+  t = setTimeout(() => el.className = 'toast', 5000);
+}
 </script>
 </body>
 </html>
