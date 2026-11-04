@@ -3,65 +3,101 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="index, follow">
-<meta name="description" content="تعرّف على قفزة Qafza — منصة عربية لعرض فرص العمل في دول الخليج.">
+<meta name="description" content="تعرّف على قفزة Qafza — منصة للبحث عن فرص العمل في دول الخليج.">
+<meta name="theme-color" content="#0b3470">
 <title>من نحن | قفزة Qafza</title>
 <link rel="canonical" href="https://ezzosd.github.io/qafzza/about.html">
 <link rel="icon" href="logo.png" type="image/png">
 <style>
-body{margin:0;background:#f7f9fc;color:#18263c;font-family:Tahoma,Arial,sans-serif;line-height:1.9}
-.wrap{width:min(820px,92%);margin:auto;padding:40px 0 60px}
-header{background:#fff;border-bottom:1px solid #e4eaf2;padding:15px 0;margin-bottom:30px}
-header .wrap{padding:0;display:flex;justify-content:space-between;align-items:center;gap:15px}
-.brand{display:flex;align-items:center;gap:10px;color:#0b3470;font-weight:900;font-size:22px;text-decoration:none}
-.brand img{width:38px;height:38px;border-radius:10px;background:#fff;padding:3px;box-shadow:0 4px 12px #0b34702b}
-.back{color:#147ee5;font-size:14px;text-decoration:none;font-weight:700}
-h1{color:#0b3470;font-size:30px;margin:0 0 10px}
-h2{color:#0b3470;font-size:20px;margin:32px 0 10px}
-p,li{color:#3b4b61;font-size:15px}
-a{color:#147ee5}
-ul{padding-right:20px}
-.values{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0}
-.value{background:#fff;border:1px solid #e4eaf2;border-radius:14px;padding:18px}
-.value strong{display:block;color:#0b3470;margin-bottom:6px}
-.value span{font-size:13px;color:#66758b}
-@media(max-width:600px){.values{grid-template-columns:1fr}}
-footer{text-align:center;color:#8896a8;font-size:12px;margin-top:40px;padding-top:20px;border-top:1px solid #e4eaf2}
-footer a{color:#147ee5;margin:0 6px}
+:root{--navy:#0b3470;--blue:#147ee5;--sky:#eaf4ff;--ink:#18263c;--muted:#66758b;--line:#e4eaf2;--bg:#f7f9fc;--green:#15805d;--shadow:0 14px 40px rgba(15,45,90,.09)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Tahoma,Arial,sans-serif;line-height:1.8}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}.wrap{width:min(900px,92%);margin:auto}
+header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}.nav{height:78px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:10px;font-weight:900;color:var(--navy);font-size:26px}.brand-logo{width:42px;height:42px;object-fit:contain;border-radius:13px;background:#fff;padding:3px;box-shadow:0 6px 15px #0b34702b;flex-shrink:0}.brand small{display:block;font-size:11px;letter-spacing:2px;color:var(--muted);margin-top:-7px}.btn{display:inline-flex;align-items:center;gap:6px;border-radius:11px;padding:11px 17px;font-weight:700;border:0;transition:.2s}.btn-primary{background:var(--blue);color:#fff}.btn-primary:hover{background:#096bd0;transform:translateY(-1px)}.btn-outline{background:#fff;border:1px solid var(--line);color:var(--navy)}
+.page-hero{padding:60px 0 40px;background:radial-gradient(circle at 85% 10%,#d9ecff 0,transparent 30%),linear-gradient(135deg,#f7fbff,#edf5ff);text-align:center}.page-hero .eyebrow{display:inline-flex;align-items:center;gap:7px;color:var(--blue);font-weight:800;font-size:13px;background:#fff;padding:7px 12px;border:1px solid #dcecff;border-radius:99px;margin-bottom:15px}.page-hero h1{font-size:clamp(28px,4.5vw,44px);color:var(--navy);margin:0 0 12px;letter-spacing:-.5px}.page-hero p{color:#5c6d83;font-size:16px;max-width:640px;margin:0 auto}
+section{padding:50px 0}.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:32px;margin-bottom:20px;box-shadow:0 2px 12px rgba(11,52,112,.04)}.card h2{color:var(--navy);margin:0 0 14px;font-size:24px}.card p{color:#4a5a70;margin:0 0 12px}.card ul{padding-inline-start:22px;color:#4a5a70}.card li{margin-bottom:8px}
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}.value{background:linear-gradient(180deg,#fafcff,#f0f6ff);border:1px solid #dfeaf8;border-radius:14px;padding:22px;text-align:center}.value .icon{font-size:32px;margin-bottom:10px}.value h3{margin:0 0 6px;color:var(--navy);font-size:16px}.value p{margin:0;color:var(--muted);font-size:13px}
+.cta-box{background:linear-gradient(120deg,#0b3470,#126dbe);border-radius:18px;padding:32px;color:#fff;text-align:center}.cta-box h2{margin:0 0 10px;font-size:24px}.cta-box p{margin:0 0 20px;color:#dcecff;font-size:15px}.cta-box .btn{background:#fff;color:var(--navy)}
+footer{background:#081f43;color:#aebed4;padding:26px 0;text-align:center;font-size:13px;margin-top:40px}footer a{color:#dbe7f6}footer a:hover{color:#fff}
+@media(max-width:700px){.values-grid{grid-template-columns:1fr}.card{padding:22px}.nav{height:68px}.brand{font-size:22px}.brand-logo{width:38px;height:38px}}
 </style>
 </head>
 <body>
-<header><div class="wrap">
-  <a class="brand" href="index.html"><img src="logo.png" alt="قفزة"> قفزة Qafza</a>
-  <a class="back" href="index.html">← العودة للرئيسية</a>
-</div></header>
-<div class="wrap">
-  <h1>من نحن</h1>
-  <p>«قفزة Qafza» منصة عربية تهدف إلى تسهيل البحث عن فرص العمل في دول الخليج الست: السعودية والإمارات وقطر والكويت والبحرين وعُمان. نبني تجربة بسيطة، سريعة، وواضحة، تحترم وقت الباحث عن عمل ولا تشتّته.</p>
 
-  <h2>لماذا «قفزة»؟</h2>
-  <p>سوق العمل الخليجي مليء بالفرص، لكن العثور عليها في مكان واحد وبلغة عربية نظيفة لا يزال تحديًا. قررنا بناء منصة:</p>
-  <ul>
-    <li>تعرض الفرص حسب الدولة، نوع الدوام، ومستوى الخبرة.</li>
-    <li>تخبرك بصراحة بما هو متاح، بلا إعلانات وهمية أو مبالغات.</li>
-    <li>تعمل على الهاتف بنفس كفاءة الحاسوب.</li>
-  </ul>
-
-  <h2>قيمنا</h2>
-  <div class="values">
-    <div class="value"><strong>الشفافية</strong><span>نوضّح أن الإعلانات التجريبية للتجربة فقط، ولا نُوهمك بغير ذلك.</span></div>
-    <div class="value"><strong>البساطة</strong><span>لا تسجيل معقّد، لا نوافذ منبثقة، لا رسوم خفية.</span></div>
-    <div class="value"><strong>احترام الخصوصية</strong><span>لا نبيع بياناتك. سياسة الخصوصية واضحة وقابلة للقراءة.</span></div>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html">
+      <img class="brand-logo" src="logo.png" alt="شعار قفزة" width="42" height="42">
+      <span>قفزة<small>QAFZA</small></span>
+    </a>
+    <a class="btn btn-outline" href="index.html">← الرئيسية</a>
   </div>
+</header>
 
-  <h2>ماذا نبني الآن</h2>
-  <p>نعمل على إضافة المزيد من الفرص الحقيقية، تحسين فلترة البحث، وإطلاق أدوات مساعدة (مثل قوالب السيرة الذاتية للسوق الخليجي). تابعنا.</p>
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">✦ تعرّف علينا</span>
+    <h1>عن قفزة Qafza</h1>
+    <p>منصة عربية تجمع فرص العمل في دول الخليج في مكان واحد، لتساعدك على الوصول إلى فرصتك القادمة بسهولة ووضوح.</p>
+  </div>
+</section>
 
-  <h2>تواصل معنا</h2>
-  <p>هل لديك اقتراح، أو وظيفة تريد نشرها؟ راسلنا عبر <a href="contact.html">صفحة الاتصال</a>.</p>
+<div class="wrap">
+  <section>
+    <div class="card">
+      <h2>رسالتنا</h2>
+      <p>نسعى إلى تبسيط رحلة البحث عن عمل في منطقة الخليج، عبر منصة سريعة وواضحة تعرض الفرص من السعودية والإمارات وقطر والكويت والبحرين وعُمان، مع التركيز على سهولة الاستخدام وتقديم معلومات دقيقة وقابلة للتحقق.</p>
+      <p>نؤمن أن الحصول على فرصة عمل مناسبة يجب ألا يكون معقدًا، لذلك بنينا "قفزة" ليكون نقطة انطلاقك نحو مسار مهني أفضل.</p>
+    </div>
 
-  <footer>© <span id="year"></span> قفزة Qafza — <a href="index.html">الرئيسية</a> <a href="privacy.html">الخصوصية</a> <a href="terms.html">الشروط</a> <a href="contact.html">اتصل بنا</a></footer>
+    <div class="card">
+      <h2>قيمنا</h2>
+      <div class="values-grid">
+        <div class="value">
+          <div class="icon">🎯</div>
+          <h3>الوضوح</h3>
+          <p>معلومات واضحة بدون تعقيد أو معلومات مضللة.</p>
+        </div>
+        <div class="value">
+          <div class="icon">⚡</div>
+          <h3>السرعة</h3>
+          <p>واجهة سريعة تعمل على جميع الأجهزة.</p>
+        </div>
+        <div class="value">
+          <div class="icon">🤝</div>
+          <h3>الثقة</h3>
+          <p>نعرض فقط ما يمكن التحقق منه، ونحترم خصوصية زوارنا.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>ماذا نقدم؟</h2>
+      <ul>
+        <li>وظائف مصنّفة حسب الدولة والمدينة ونوع الدوام.</li>
+        <li>بحث سريع وفلاتر سهلة للوصول إلى الفرصة المناسبة.</li>
+        <li>إمكانية حفظ الوظائف للرجوع إليها لاحقًا.</li>
+        <li>نموذج تقديم مباشر يوصلك بأصحاب العمل.</li>
+        <li>تحديث مستمر للفرص الجديدة.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>ملاحظة مهمة</h2>
+      <p>قفزة منصة وسيطة لعرض الفرص، ولا نضمن قبول أي طلب تقديم. ننصح دائمًا بالتحقق من صحة جهة العمل وعدم مشاركة معلوماتك الحساسة (كصور الهوية أو بيانات بنكية) قبل التثبت من الشركة.</p>
+    </div>
+
+    <div class="cta-box">
+      <h2>جاهز للخطوة القادمة؟</h2>
+      <p>تصفح الفرص المتاحة الآن وابدأ رحلتك المهنية.</p>
+      <a class="btn" href="index.html#jobs">تصفح الوظائف ←</a>
+    </div>
+  </section>
 </div>
-<script>document.getElementById("year").textContent=new Date().getFullYear();</script>
+
+<footer>
+  <div class="wrap">
+    © <span id="year"></span> قفزة Qafza — <a href="index.html">الرئيسية</a> · <a href="contact.html">اتصل بنا</a> · <a href="privacy.html">الخصوصية</a> · <a href="terms.html">الشروط</a>
+  </div>
+</footer>
+<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
 </body>
 </html>
